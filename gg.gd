@@ -1,9 +1,8 @@
 extends KinematicBody2D
 
-var speed = 44
-var jumpForce = 310
-var gravity = 235
-
+var speed = 51
+var jumpForce = 200
+var gravity = 200
 var vel = Vector2()
 
 func _physics_process(delta):
@@ -11,6 +10,8 @@ func _physics_process(delta):
 		vel.x -= speed
 	elif  Input.is_action_pressed("dvig vpravo"):
 		vel.x += speed
+	else :
+		vel.x = 0
 		
 	vel.y += gravity * delta
 		
@@ -18,3 +19,8 @@ func _physics_process(delta):
 		vel.y -= jumpForce
 		
 	vel = move_and_slide(vel, Vector2.UP)
+	
+	if vel.x < 0:
+		$"Photo2024-06-1914-21-42-no-bg-preview(carvephotos)".flip_h = true
+	elif vel.x > 0:
+		$"Photo2024-06-1914-21-42-no-bg-preview(carvephotos)".flip_h = false
