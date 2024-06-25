@@ -1,18 +1,48 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://gg.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Platform.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Menu.gd" type="Script" id=3]
 [ext_resource path="res://Menu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://елки и декор/фон с горами.jpg" type="Texture" id=5]
+[ext_resource path="res://елки и декор/Елка 3-no-bg-preview (carve.photos) — копия.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4011.5, 101.5 )
 
 [node name="Main" type="Node2D"]
 position = Vector2( 400, -197 )
 script = ExtResource( 3 )
 
-[node name="gg" parent="." instance=ExtResource( 1 )]
-position = Vector2( 219, 839 )
+[node name="Platform2" parent="." instance=ExtResource( 2 )]
+position = Vector2( -3820, -207 )
 
-[node name="Camera2D" type="Camera2D" parent="gg"]
+[node name="Menu" parent="." instance=ExtResource( 4 )]
+margin_left = -4772.0
+margin_right = -2806.0
+margin_bottom = 970.0
+
+[node name="Фон" type="StaticBody2D" parent="."]
+
+[node name="ФонСГорами" type="Sprite" parent="Фон"]
+position = Vector2( 2329.75, 664 )
+scale = Vector2( 4.29727, 5.29959 )
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Фон"]
+position = Vector2( 3584, 2083 )
+shape = SubResource( 1 )
+
+[node name="Елка3-no-bg-preview(carvephotos)—Копия" type="Sprite" parent="Фон/CollisionShape2D"]
+position = Vector2( -532, -346 )
+scale = Vector2( 5.2312, 5.48453 )
+texture = ExtResource( 6 )
+
+[node name="gg" parent="Фон" instance=ExtResource( 1 )]
+position = Vector2( 1330, 1890 )
+rotation = 4.46638e-06
+
+[node name="Camera2D" type="Camera2D" parent="Фон/gg"]
 position = Vector2( 12, -24 )
 zoom = Vector2( 2, 2 )
 drag_margin_h_enabled = true
@@ -22,13 +52,5 @@ drag_margin_top = 0.1
 drag_margin_right = 0.1
 drag_margin_bottom = 0.1
 
-[node name="Platform" parent="." instance=ExtResource( 2 )]
-position = Vector2( 201, 965 )
-
-[node name="Platform2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 661, 796 )
-
-[node name="Menu" parent="." instance=ExtResource( 4 )]
-margin_left = -4772.0
-margin_right = -2806.0
-margin_bottom = 970.0
+[node name="Platform" parent="Фон" instance=ExtResource( 2 )]
+position = Vector2( 1907, 1585 )
